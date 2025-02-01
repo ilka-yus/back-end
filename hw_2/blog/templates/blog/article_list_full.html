@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список статей</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Все статьи</h1>
+    {% for article in articles %}
+        <hr>
+        <h2><a href="{% url 'article-detail' article.id %}">{{ article.title }}</a></h2>
+        <p><strong>Автор:</strong> {{ article.author }}</p>
+        <p>{{ article.text }}</p>
+    {% endfor %}
+</body>
+</html>

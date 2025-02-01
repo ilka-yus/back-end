@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Список фильмов</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Все фильмы</h1>
+    {% for movie in movies %}
+        <hr>
+        <h2><a href="{% url 'movie-detail' movie.id %}">{{ movie.title }}</a></h2>
+        <p><strong>Описание:</strong> {{ movie.description }}</p>
+        <p><strong>Продюсер:</strong> {{ movie.producer }}</p>
+        <p><strong>Длительность:</strong> {{ movie.duration }} секунд</p>
+    {% endfor %}
+</body>
+</html>
