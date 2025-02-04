@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.description }}</p>
+    <p><strong>Автор:</strong> {{ post.author }}</p>
+    <a href="{% url 'post_list' %}" class="action">Назад</a>
+</body>
+</html>

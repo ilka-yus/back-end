@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Пост</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Все посты</h1>
+    <a href="{% url 'post_create' %}" class="action">Создать новый пост</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Посты</th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for post in posts %}
+                <tr>
+                    <td><a href="{% url 'post_detail' post.id %}">{{ post.title }}</a></td>
+                    <td><a href="{% url 'post_delete' post.id %}" class="action">Удалить</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

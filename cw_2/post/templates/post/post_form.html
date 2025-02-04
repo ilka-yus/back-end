@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый пост</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Создайте пост</h1>
+    <div class="form-container"></div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="action">Подтвердить</button>
+        </form>
+    </div>
+    <a href="{% url 'post_list' %}" class="action">Назад</a>
+</body>
+</html>
