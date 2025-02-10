@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #eeeeee;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+h1 {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.action {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 10px;
+    font-size: 18px;
+}
+
+.action:hover {
+    background-color: #555;
+}
+
+
+.delete {
+    display: inline-block;
+    background-color: #940000;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.delete:hover {
+    background-color: #832929;
+}
+
+
+.change {
+    display: inline-block;
+    background-color: #157c00;
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.change:hover {
+    background-color: #429341;
+}
+
+
+.table {
+    width: 60%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: white;
+}
+
+.table th {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: left;
+}
+
+.table td {
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+
+.text {
+    text-decoration: none;
+    color: #000000;
+}
+
+.text:hover {
+    text-decoration: underline;
+}
+
+
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 450px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form input, form textarea {
+    width: 90%;
+    padding: 8px;
+    margin: 5px auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}

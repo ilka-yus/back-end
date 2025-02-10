@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ todo.title }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ todo.title }}</h1>
+    <p>{{ todo.description }}</p>
+    <p><strong>Дата:</strong> {{ todo.due_date }}</p>
+    <p><strong>Статус:</strong>
+        {% if todo.status %}
+            Выполнено
+        {% else %}
+            Не выполнено
+        {% endif %}
+    </p>
+    <a href="{% url 'todo_list' %}" class="action">Назад</a>
+</body>
+</html>

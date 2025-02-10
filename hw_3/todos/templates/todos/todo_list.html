@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Все задачи</h1>
+    <a href="{% url 'todo_create' %}" class="action">Создать новую задачу</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Задачи</th>
+                <th>Статус</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for todo in todos %}
+                <tr>
+                    <td><a href="{% url 'todo_detail' todo.id %}" class="text">{{ todo.title }}</a></td>
+                    <td>
+                        {% if todo.status %}
+                            Выполнено
+                        {% else %}
+                            Не выполнено
+                        {% endif %}
+                    </td>
+                    <td><a href="{% url 'change_status' todo.id %}" class="change">Изменить статус</a></td>
+                    <td><a href="{% url 'todo_delete' todo.id %}" class="delete">Удалить</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
