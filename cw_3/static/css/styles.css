@@ -11,3 +11,12 @@ body {
     justify-content: space-between;
     align-items: center;
 }
+
+.list-group-item a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.list-group-item a:hover {
+    text-decoration: underline !important;
+}
