@@ -5,6 +5,10 @@ class ThreadForm(forms.ModelForm):
     class Meta:
         model = Thread
         fields = ['name', 'description']
+        labels = {
+            'name': 'Название',
+            'description': 'Описание',
+        }
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -14,4 +18,9 @@ class PostForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'title': 'Заголовок',
+            'description': 'Описание',
+            'author': 'Автор',
         }
