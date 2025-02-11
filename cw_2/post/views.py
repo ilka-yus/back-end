@@ -18,7 +18,7 @@ def post_create(request):
             return redirect('post_list')
     else:
         form = PostForm()
-    return render(request, 'post\post_form.html', {'form': form})
+    return render(request, 'post/post_form.html', {'form': form})
 
 def post_delete(request, id):
     post = get_object_or_404(Post, id=id)
