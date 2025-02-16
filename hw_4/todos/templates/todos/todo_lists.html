@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Списки задач{% endblock %}
+
+{% block content %}
+<h1>Списки задач</h1>
+
+<ul class="list-group">
+    {% for todo_list in lists %}
+    <li class="list-group-item">
+        <a href="{% url 'todo_list_detail' todo_list.id %}">
+            {{ todo_list.title }}
+        </a>
+        <form method="post" action="{% url 'delete_todo_list' todo_list.id %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#createTodoListModal">
+    Добавить список
+</button>
+
+<div class="modal fade" id="createTodoListModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Создать новый список задач</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

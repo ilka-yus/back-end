@@ -25,9 +25,6 @@ def todo_delete(request, id):
     todo.delete()
     return redirect('todo_list')
 
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Todo
-
 def change_status(request, id):
     todo = get_object_or_404(Todo, id=id)
     todo.status = not todo.status
