@@ -62,11 +62,13 @@ def edit_post(request, id):
     post = get_object_or_404(Post, id=id)
 
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
+            if form.cleaned_data.get('delete_picture'):
+                post.picture = None
             form.save()
             return redirect('thread_detail', id=post.thread.id)
     else:
         form = PostForm(instance=post)
 
-    return render(request, 'post/edit_post.html', {'form': form})
+    return render(request, 'post/edit_post.html', {'form': form, 'post': post})

@@ -20,3 +20,6 @@ class PostForm(forms.ModelForm):
             'description': 'Описание',
             'author': 'Автор',
         }
+
+    picture = forms.FileField(required=False)
+    delete_picture = forms.BooleanField(required=False, initial=False)
