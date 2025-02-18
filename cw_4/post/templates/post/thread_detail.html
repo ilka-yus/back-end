@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ thread.name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'thread_list' %}" class="btn btn-secondary btn-sm mb-3">Назад</a>
+<h1 class="mb-3">{{ thread.name }}</h1>
+<p>{{ thread.description }}</p>
+
+<a href="{% url 'edit_thread' thread.id %}" class="btn btn-warning">Редактировать</a>
+
+<hr>
+
+<h2>Посты</h2>
+
+<ul class="list-group mb-4">
+    {% for post in posts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ post.title }}</strong> ({{ post.author }})
+                {% if post.picture %}
+                    <img class="w-25" src="{{ post.picture.url }}" alt="Изображение поста">
+                {% endif %}
+                <p class="mb-0">{{ post.description }}</p>
+            </div>
+            <div class="d-flex mb-3">
+                <a href="{% url 'edit_post' post.id %}" class="btn btn-warning btn-sm me-2">Редактировать</a>
+                <form method="post" action="{% url 'delete_post' post.id %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+                </form>
+            </div>
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted"> Постов пока нет </li>
+    {% endfor %}
+</ul>
+
+<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#createPostModal">
+    Создать пост
+</button>
+
+<div class="modal fade" id="createPostModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Создать пост</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ post_form.as_p }}
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
