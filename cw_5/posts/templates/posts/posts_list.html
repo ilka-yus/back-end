@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Все посты</h2>
+<ul class="list-group mb-4">
+    {% for post in posts %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <a href="{% url 'post_detail' post.id %}" class="fw-bold">
+                    <strong>{{ post.title }}</strong> 
+                </a>
+                <p> Автор: {{ post.author }} </p>
+                <hr>
+                <p class="mb-0">{{ post.description }}</p>
+                {% if post.picture %}
+                    <img class="w-25" src="{{ post.picture.url }}" alt="Изображение поста">
+                {% endif %}
+            </div>
+        </li>
+    {% empty %}
+        <li class="list-group-item text-muted"> Постов пока нет </li>
+    {% endfor %}
+</ul>
+{% endblock %}
