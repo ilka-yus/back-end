@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Задачи{% endblock %}
+
+{% block content %}
+<h1>Задачи</h1>
+
+<ul class="list-group">
+    {% for todo in todos %}
+    <li class="list-group-item">
+        <a href="{% url 'todo_detail' todo.id %}">
+            {{ todo.title }}
+        </a>
+        <form method="post" action="{% url 'todo_delete' todo.id %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger btn-sm">Удалить</button>
+        </form>
+    </li>
+    {% empty %}
+        <li class="list-group-item text-muted"> Тем пока нет </li> 
+    {% endfor %}
+</ul>
+
+<button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#createTodoModal">
+    Добавить задачу
+</button>
+
+<div class="modal fade" id="createTodoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Создать новую задачу</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-success">Создать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
