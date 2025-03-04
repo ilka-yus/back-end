@@ -11,6 +11,7 @@
         <li class="list-group-item"><strong>Дата:</strong> {{ reservation.date }}</li>
         <li class="list-group-item"><strong>Статус:</strong> {{ reservation.get_status_display }}</li>
     </ul>
+    <a href="{% url 'reservation_update' reservation.id %}" class="btn btn-warning mt-3">Редактировать</a>
     <a href="{% url 'reservation_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
 </div>
 {% endblock %}

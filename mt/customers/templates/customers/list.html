@@ -11,6 +11,7 @@
                 <th>ID</th>
                 <th>Имя</th>
                 <th>Телефон</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,10 @@
                     <td>{{ customer.id }}</td>
                     <td>{{ customer.name }}</td>
                     <td>{{ customer.phone }}</td>
+                    <td>
+                        <a href="{% url 'customer_detail' customer.id %}" class="btn btn-info btn-sm">Подробнее</a>
+                        <a href="{% url 'reservation_list_by_user' customer.id %}" class="btn btn-secondary btn-sm">Брони клиента</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

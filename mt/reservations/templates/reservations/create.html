@@ -3,10 +3,53 @@
 {% block title %}Добавить бронирование{% endblock %}
 
 {% block content %}
-    <h2>Добавить бронирование</h2>
+<div class="container mt-5">
+    <h2 class="mb-4">Добавить бронирование</h2>
+
+    {% if form.errors %}
+        <div class="alert alert-danger">
+            <strong>Исправьте ошибки:</strong>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Сохранить</button>
+
+        <div class="mb-3">
+            <label class="form-label">Имя клиента:</label>
+            {{ form.customer }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Выберите стол:</label>
+            <select name="table" class="form-select">
+                {% for table in form.fields.table.queryset %}
+                    <option value="{{ table.id }}">{{ table.number }} ({{ table.seats }} мест)</option>
+                {% empty %}
+                    <option disabled>Нет доступных столов</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Дата бронирования:</label>
+            {{ form.date }}
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Статус бронирования:</label>
+            {{ form.status }}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Забронировать</button>
+        <a href="{% url 'reservation_list' %}" class="btn btn-secondary">Отмена</a>
     </form>
+</div>
 {% endblock %}

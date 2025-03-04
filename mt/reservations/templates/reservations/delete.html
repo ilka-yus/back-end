@@ -3,9 +3,14 @@
 {% block title %}Удалить бронирование{% endblock %}
 
 {% block content %}
+<div class="container">
     <h2>Удалить бронирование</h2>
     <p>Вы уверены, что хотите удалить бронирование для клиента <strong>{{ reservation.customer.name }}</strong>?</p>
     
     <form method="post">
         {% csrf_token %}
-        <button type="submit
+        <button type="submit" class="btn btn-danger">Удалить</button>
+        <a href="{% url 'reservation_list' %}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

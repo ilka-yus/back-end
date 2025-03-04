@@ -1,12 +1,36 @@
 {% extends "base.html" %}
 
-{% block title %}Доступные столы{% endblock %}
+{% block title %}Доступные столики{% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">Доступные столы</h2>
-    <ul>
-        {% for table in tables %}
-            <li>Стол №{{ table.number }} (Мест: {{ table.seats }})</li>
-        {% endfor %}
-    </ul>
+<div class="container">
+    <h2>Доступные столики</h2>
+
+    <form method="GET" class="mb-3">
+        <label for="date">Выберите дату:</label>
+        <input type="date" id="date" name="date" class="form-control" value="{{ date }}">
+        <button type="submit" class="btn btn-primary mt-2">Показать</button>
+    </form>
+
+    {% if tables %}
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Номер</th>
+                    <th>Места</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for table in tables %}
+                <tr>
+                    <td>{{ table.number }}</td>
+                    <td>{{ table.seats }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Нет доступных столиков на выбранную дату.</p>
+    {% endif %}
+</div>
 {% endblock %}

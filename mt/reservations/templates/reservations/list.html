@@ -5,6 +5,7 @@
 {% block content %}
     <h2 class="mb-4">Список бронирований</h2>
     <a href="{% url 'reservation_create' %}" class="btn btn-primary mb-3">Добавить бронирование</a>
+    <a href="{% url 'table_available' %}" class="btn btn-secondary mb-3">Свобоные столы</a>
     <table class="table table-bordered">
         <thead class="table-dark">
             <tr>
@@ -13,16 +14,22 @@
                 <th>Стол</th>
                 <th>Дата</th>
                 <th>Статус</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
             {% for reservation in reservations %}
                 <tr>
-                    <td><a href="{% url 'reservation_detail' reservation.id %}" class="">{{ reservation.id }}</a></td>
+                    <td>{{ reservation.id }}</a></td>
                     <td>{{ reservation.customer.name }}</td>
                     <td>Стол №{{ reservation.table.number }}</td>
                     <td>{{ reservation.date }}</td>
                     <td>{{ reservation.get_status_display }}</td>
+                    <td>
+                        <a href="{% url 'reservation_detail' reservation.id %}" class="btn btn-info btn-sm">Подробнее</a>
+                        <a href="{% url 'reservation_update' reservation.id %}" class="btn btn-warning btn-sm">Редактировать</a>
+                        <a href="{% url 'reservation_delete' reservation.id %}" class="btn btn-danger btn-sm">Удалить</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

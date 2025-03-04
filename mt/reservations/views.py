@@ -22,9 +22,12 @@ def reservation_create(request):
         
             if Reservation.objects.filter(table=table, date=date).exists():
                 return HttpResponse('Этот столик уже забронирован на эту дату', status=400)
-        
-            form.save()
-            return redirect('reservation_list')
+
+            if not table.is_available:
+                form.add_error('table', 'Выбранный стол недоступен для бронирования')
+            else:
+                form.save()
+                return redirect('reservation_list')
     
     else:
         form = ReservationForm()
@@ -33,20 +36,25 @@ def reservation_create(request):
 
 def reservation_detail(request, id):
     reservation = get_object_or_404(Reservation, id=id)
-    return render(request, 'reservations/detail.html', {'reservstion': reservation})
+    return render(request, 'reservations/detail.html', {'reservation': reservation})
 
 def reservation_list_by_user(request, user_id):
-    reservations = Reservation.objects.filter(customer__id=user_id)
-    return render(request, 'reservations/user_resevations.html', {'reservations': reservations})
+    customer = get_object_or_404(Customer, id=user_id)
+    reservations = Reservation.objects.filter(customer=customer)
+    return render(request, "reservations/user_reservations.html", {"customer": customer, "reservations": reservations})
 
 def reservation_update(request, id):
     reservation = get_object_or_404(Reservation, id=id)
+
     if request.method == 'POST':
-        status = request.POST.get('status')
-        if status in ['pending', 'confirmed', 'canceled']:
-            reservation.status = status
-            reservation.save()
-            return redirect('reservations/update.html', {'reservation': reservation})
+        form = ReservationForm(request.POST, instance=reservation)
+        if form.is_valid():
+            form.save()
+            return redirect('reservation_detail', id=id)
+    else:
+        form = ReservationForm(instance=reservation)
+
+    return render(request, 'reservations/update.html', {'form': form, 'reservation': reservation})
         
 def reservation_delete(request, id):
     reservation = get_object_or_404(Reservation, id=id)

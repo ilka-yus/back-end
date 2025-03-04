@@ -6,4 +6,4 @@ class Table(models.Model):
     is_available = models.BooleanField(default=True)
 
     def __str__(self):
-        return f'Стол {self.number} ({'свободен' if self.is_available else 'занят'})'
+        return f'Стол {self.number}'

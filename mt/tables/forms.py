@@ -8,5 +8,5 @@ class TableForm(forms.ModelForm):
         labels = {
             'number': 'Номер',
             'seats': 'Места',
-            'is_available': 'Свободен/занят',
+            'is_available': 'Доступен',
         }
