@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Детали клиента{% endblock %}
+
+{% block content %}
+    <h2>Информация о клиенте</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Имя:</strong> {{ customer.name }}</li>
+        <li class="list-group-item"><strong>Телефон:</strong> {{ customer.phone }}</li>
+    </ul>
+    <a href="{% url 'customer_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+{% endblock %}

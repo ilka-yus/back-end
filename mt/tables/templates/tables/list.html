@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Список столов{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Список столов</h2>
+    <a href="{% url 'table_create' %}" class="btn btn-primary mb-3">Добавить стол</a>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Номер</th>
+                <th>Мест</th>
+                <th>Доступен</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for table in tables %}
+                <tr>
+                    <td>{{ table.id }}</td>
+                    <td>{{ table.number }}</td>
+                    <td>{{ table.seats }}</td>
+                    <td>{{ table.is_available|yesno:"Да,Нет" }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

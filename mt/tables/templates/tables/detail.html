@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Детали стола{% endblock %}
+
+{% block content %}
+    <h2>Информация о столе</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Номер:</strong> {{ table.number }}</li>
+        <li class="list-group-item"><strong>Количество мест:</strong> {{ table.seats }}</li>
+        <li class="list-group-item"><strong>Доступен:</strong> {{ table.is_available|yesno:"Да,Нет" }}</li>
+    </ul>
+    <a href="{% url 'table_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+{% endblock %}

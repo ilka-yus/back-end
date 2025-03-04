@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">Reservation</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collpse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="nav-item">
+                <li class="vav-item">
+                    <a class="nav-link" href="{% url 'customer_list' %}">Сlients</a>
+                </li>
+                <li class="vav-item">
+                    <a class="nav-link" href="{% url 'table_list' %}">Tables</a>
+                </li>
+                <li class="vav-item">
+                    <a class="nav-link" href="{% url 'reservation_list' %}">Reservations</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

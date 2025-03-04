@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Доступные столы{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Доступные столы</h2>
+    <ul>
+        {% for table in tables %}
+            <li>Стол №{{ table.number }} (Мест: {{ table.seats }})</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

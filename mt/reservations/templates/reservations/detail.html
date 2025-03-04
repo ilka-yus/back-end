@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Детали бронирования{% endblock %}
+
+{% block content %}
+<div class="container mt-4"></div>
+    <h2>Информация о бронировании</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><strong>Клиент:</strong> {{ reservation.customer.name }}</li>
+        <li class="list-group-item"><strong>Стол:</strong> №{{ reservation.table.number }}</li>
+        <li class="list-group-item"><strong>Дата:</strong> {{ reservation.date }}</li>
+        <li class="list-group-item"><strong>Статус:</strong> {{ reservation.get_status_display }}</li>
+    </ul>
+    <a href="{% url 'reservation_list' %}" class="btn btn-secondary mt-3">Назад к списку</a>
+</div>
+{% endblock %}
