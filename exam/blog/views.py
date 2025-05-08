@@ -5,7 +5,6 @@ from .serializers import PostSerializer, CommentSerializer
 from .permissions import IsAuthorOrReadOnly
 
 
-
 class PostListCreateView(generics.ListCreateAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
